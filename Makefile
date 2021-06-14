@@ -35,3 +35,6 @@ stop_container: ## °-> stop the devops running container
 zip_me: ## °-> zip the whole project without the .git dir
 	-rm -v ../kafka-poc.zip ; zip -r ../kafka-poc.zip  . -x '*.git*'
 	
+build_devops_docker_image_cached: ## °-> build the devops docker image, fetch stuff from docker cache
+	docker build . -t proj-devops-img --build-arg UID=$(shell id -u) --build-arg GID=$(shell id -g) -f src/docker/devops/Dockerfile
+
